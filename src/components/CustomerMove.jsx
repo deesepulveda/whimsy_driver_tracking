@@ -17,7 +17,8 @@ const CustomerMove = () => {
   const fetchData = async () => {
     const { data, error } = await supabase
       .from("dispatches")
-      .select("*");
+      .select("*")
+      .order("id", { ascending: true });
     if (error) console.log(error);
 
     if (data) {
@@ -36,6 +37,23 @@ const CustomerMove = () => {
     const newEditable = [...editable];
     newEditable[index] = !newEditable[index];
     setEditable(newEditable);
+  };
+
+  // Handle Checked Toggle
+  const handleCheckedToggle = async (e, idNum, name) => {
+    const checkBoolean = e.target.checked;
+
+    const { data, error } = await supabase
+      .from("dispatches")
+      .update({ [name]: checkBoolean })
+      .eq("id", idNum);
+
+    if (error) console.log("Cannot Update Checked Value");
+    if (data) {
+      console.log("Value Has been Checked!");
+    }
+
+    fetchData();
   };
 
   //   Handle Updated Items
@@ -159,7 +177,11 @@ const CustomerMove = () => {
         {
           <div className="data_mapping_container">
             {showData.map((items, index) => (
-              <div key={items.id} className="data_row">
+              <div
+                key={items.id}
+                className={
+                  items.checked ? "data_row checkedBG" : "data_row"
+                }>
                 {/* Data Name */}
                 {editable[index] ? (
                   <input
@@ -245,12 +267,29 @@ const CustomerMove = () => {
                   />
                 ) : (
                   <div className="data_row_move">
-                    <p>{items.move}</p>
+                    <select name="" id="">
+                      <option value="choose">choose</option>
+                      <option value="cp">cp bens</option>
+                      <option value="cn">cn harv</option>
+                      <option value="itc">nrg</option>
+                      <option value="itw">it wilm</option>
+                      <option value="ns">ns</option>
+                      <option value="csx59">csx 59th</option>
+                      <option value="csxbp">csx bp</option>
+                      <option value="g4">g4</option>
+                      <option value="lpc">lpc</option>
+                    </select>
+                    <button>send</button>
                   </div>
                 )}
                 {/* Data Checked-Box */}
                 <div className="data_row_det">
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    onChange={(e) =>
+                      handleCheckedToggle(e, items.id, "checked")
+                    }
+                  />
                 </div>
                 {/* Data Edit/Delete Buttons */}
                 <div className="data_row_edit">

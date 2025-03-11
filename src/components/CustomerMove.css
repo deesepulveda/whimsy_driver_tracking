@@ -6,6 +6,8 @@
 .customer_container > .form_container {
   width: 100%;
   height: 8rem;
+  max-width: 140rem;
+  margin: 0 auto;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -37,10 +39,16 @@
   min-height: 30vh;
 }
 
+.customer_container > .show_data_container > .data_header,
+.customer_container > .show_data_container > .data_mapping_container {
+  max-width: 140rem;
+  margin: 0 auto;
+}
+
 .customer_container > .show_data_container > .data_header {
   width: 95%;
   height: 4rem;
-  margin: 0 auto;
+
   font-size: 1.4rem;
   display: flex;
   justify-content: center;
@@ -60,27 +68,33 @@
 }
 
 .name_column,
+.data_row_name,
+.data_row_input_name {
+  width: 12%;
+}
+
 .customer_column,
 .city_column,
-.data_row_name,
 .data_row_customer,
 .data_row_city,
-.data_row_input_name,
 .data_row_input_customer,
 .data_row_input_city {
-  width: 17%;
+  width: 15%;
 }
 
 .dispatch_column,
 .appt_column,
-.move_column,
 .data_row_dispatch,
 .data_row_appt,
-.data_row_move,
 .data_row_input_dispatch,
-.data_row_input_appt,
-.data_row_input_move {
+.data_row_input_appt {
   width: 10%;
+}
+
+.move_column,
+.data_row_move,
+.data_row_input_move {
+  width: 18%;
 }
 
 .det_column,
@@ -126,10 +140,35 @@
   border: 1px solid #fff;
 }
 
+.data_mapping_container > .data_row > .data_row_move > select {
+  width: 60%;
+  height: 80%;
+  margin: 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.data_mapping_container
+  > .data_row
+  > .data_row_move
+  > select
+  > option {
+  text-transform: uppercase;
+}
+
+.data_mapping_container > .data_row > .data_row_det > input {
+  cursor: pointer;
+}
+
 .data_mapping_container > .data_row > .data_row_edit > button {
   width: 6rem;
   height: 80%;
   margin: 0 0.5rem;
   text-transform: capitalize;
   cursor: pointer;
+}
+
+/* Conditional Rendering Styling */
+
+.checkedBG {
+  background-color: rgb(179, 10, 131);
 }
