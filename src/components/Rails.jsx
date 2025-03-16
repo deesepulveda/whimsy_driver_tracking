@@ -1,39 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Rails.css";
-import supabase from "../config/config";
 
-const Rails = () => {
-  const [data, setData] = useState([]);
-
-  const fetchData = async () => {
-    const { data, error } = await supabase
-      .from("dispatches")
-      .select("*");
-
-    if (error) console.log(error);
-
-    if (data) {
-      console.log("There is Data!");
-      setData(data);
-    }
-
-    setData(data);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+const Rails = ({ showData }) => {
   return (
-    <div className="container_rail">
-      {data.map((items, index) => (
-        <div key={index}>
-          <p>{items.name}</p>
-          <p>{items.dispatch}</p>
-          <p>{items.customer}</p>
+    <>
+      <div className="rail_title">
+        <h1>driver rail returns</h1>
+      </div>
+      <div className="container_rail">
+        <div className="container_rail_header">
+          <div className="rail_return_cols return_cols_rail">
+            ret rail
+          </div>
+          <div className="rail_return_cols">name</div>
+          <div className="rail_return_cols">disp</div>
+          <div className="rail_return_cols">container</div>
         </div>
-      ))}
-    </div>
+
+        <div>
+          {showData
+            .map((items) => items)
+            .filter((item) => item.move !== "null")
+            .map((moves) => (
+              <div key={moves.id}>
+                <span>{moves.id}</span>
+                <span>{moves.name}</span>
+                <span>{moves.move}</span>
+              </div>
+            ))}
+        </div>
+      </div>
+    </>
   );
 };
 

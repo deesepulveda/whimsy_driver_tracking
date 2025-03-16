@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import supabase from "../config/config";
 import "./CustomerMove.css";
 
-const CustomerMove = () => {
-  const [showData, setShowData] = useState([]);
+const CustomerMove = ({
+  handleMoveButton,
+  handleSelectedValueChange,
+  showData,
+  fetchData,
+  selectedValues,
+}) => {
   const [editable, setEditable] = useState(
     Array(showData.length).fill(false)
   );
@@ -13,26 +18,12 @@ const CustomerMove = () => {
   const [cityValue, setCityValue] = useState("");
   const [apptValue, setApptValue] = useState("");
 
-  //   Fetch Data from Supabase
-  const fetchData = async () => {
-    const { data, error } = await supabase
-      .from("dispatches")
-      .select("*")
-      .order("id", { ascending: true });
-    if (error) console.log(error);
+  // Mapped Data to Render Non-Moves
+  const renderNewData = showData
+    .map((items) => items)
+    .filter((item) => item.move === "null");
 
-    if (data) {
-      console.log("There is Data!");
-      setShowData(data);
-    }
-  };
-
-  //   Initial Data Fetch from Supabase
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  //   Toggle Edit Button Function
+  // Toggle Edit Button Function
   const toggleEditable = (index) => {
     const newEditable = [...editable];
     newEditable[index] = !newEditable[index];
@@ -56,7 +47,7 @@ const CustomerMove = () => {
     fetchData();
   };
 
-  //   Handle Updated Items
+  // Handle Updated Items
   const handleUpdateItems = async (e, idNum, name) => {
     const newUpdatedValue = e.target.value;
     const { data, error } = await supabase
@@ -72,7 +63,7 @@ const CustomerMove = () => {
     fetchData();
   };
 
-  //   Handle Deleted Items
+  // Handle Deleted Items
   const handleDeletedItems = async (idNum) => {
     const { data, error } = await supabase
       .from("dispatches")
@@ -87,9 +78,9 @@ const CustomerMove = () => {
     fetchData();
   };
 
-  //   Handle Submit Form Function
+  // Handle Submit Form Function
   const handleSubmitForm = async (e) => {
-    e.preventDefault();
+    e.preventDefault(e);
 
     // Add New Data to Supbase
     const { data, error } = await supabase.from("dispatches").insert({
@@ -98,6 +89,7 @@ const CustomerMove = () => {
       customer: customerValue,
       city: cityValue,
       appt: apptValue,
+      move: "null",
     });
 
     if (error) console.log("Cannot Add to Data");
@@ -119,6 +111,9 @@ const CustomerMove = () => {
   // Component
   return (
     <div className="customer_container">
+      <div className="customer_container_title">
+        <h1>driver customer moves</h1>
+      </div>
       {/* FORM CONTAINER BELOW */}
       <form className="form_container" onSubmit={handleSubmitForm}>
         <p>Enter Data</p>
@@ -176,7 +171,7 @@ const CustomerMove = () => {
         {/* Data Mapped */}
         {
           <div className="data_mapping_container">
-            {showData.map((items, index) => (
+            {renderNewData.map((items, index) => (
               <div
                 key={items.id}
                 className={
@@ -258,30 +253,36 @@ const CustomerMove = () => {
                     <p>{items.appt}</p>
                   </div>
                 )}
-                {/* Edit Data Rows */}
-                {editable[index] ? (
-                  <input
-                    type="text"
-                    placeholder={items.move || "Edit Move"}
-                    className="data_row_input_move"
-                  />
-                ) : (
-                  <div className="data_row_move">
-                    <select name="" id="">
-                      <option value="choose">choose</option>
-                      <option value="cp">cp bens</option>
-                      <option value="cn">cn harv</option>
-                      <option value="itc">nrg</option>
-                      <option value="itw">it wilm</option>
-                      <option value="ns">ns</option>
-                      <option value="csx59">csx 59th</option>
-                      <option value="csxbp">csx bp</option>
-                      <option value="g4">g4</option>
-                      <option value="lpc">lpc</option>
-                    </select>
-                    <button>send</button>
-                  </div>
-                )}
+                {/* Data Move */}
+                <div className="data_row_move">
+                  <select
+                    name=""
+                    value={selectedValues[index]}
+                    onChange={(e) =>
+                      handleSelectedValueChange(e, index)
+                    }>
+                    <option value="select">
+                      {items.move === "null" ? "select" : items.move}
+                    </option>
+                    <option value="cp">cp bens</option>
+                    <option value="csxbp">csx bp</option>
+                    <option value="csx59">csx 59th</option>
+                    <option value="ns">ns</option>
+                    <option value="cnharv">cn harv</option>
+                    <option value="cnjol">cn joliet</option>
+                    <option value="lpc">lpc</option>
+                    <option value="g4">g4</option>
+                    <option value="corwith">corwith</option>
+                    <option value="depot">depots</option>
+                    <option value="null">select</option>
+                  </select>
+                  <button
+                    onClick={(e) =>
+                      handleMoveButton(e, items.id, index, "move")
+                    }>
+                    send
+                  </button>
+                </div>
                 {/* Data Checked-Box */}
                 <div className="data_row_det">
                   <input
