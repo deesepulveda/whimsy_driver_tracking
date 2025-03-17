@@ -1,0 +1,31 @@
+.form_container {
+  width: 100%;
+  height: 8rem;
+  max-width: 140rem;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_container > p {
+  width: auto;
+  margin-right: 0.75rem;
+  font-size: 1.4rem;
+}
+
+.form_container > input {
+  width: calc(70% / 6);
+  height: 3rem;
+  margin: 0 0.25rem;
+}
+
+.form_container > button {
+  width: 10%;
+  height: 3rem;
+  margin-left: 0.25rem;
+  text-transform: capitalize;
+  background-color: rgb(203, 202, 202);
+  cursor: pointer;
+}

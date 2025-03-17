@@ -83,7 +83,9 @@ function App() {
           selectedValues={selectedValues}
         />
       )}
-      {isMobile && <Rails showData={showData} />}
+      {isMobile && (
+        <Rails showData={showData} fetchData={fetchData} />
+      )}
     </div>
   );
 }

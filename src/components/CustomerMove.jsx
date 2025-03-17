@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import supabase from "../config/config";
 import "./CustomerMove.css";
+import Form from "./Form";
 
 const CustomerMove = ({
   handleMoveButton,
@@ -12,11 +13,6 @@ const CustomerMove = ({
   const [editable, setEditable] = useState(
     Array(showData.length).fill(false)
   );
-  const [nameValue, setNameValue] = useState("");
-  const [dispatchValue, setDispatchValue] = useState("");
-  const [customerValue, setCustomerValue] = useState("");
-  const [cityValue, setCityValue] = useState("");
-  const [apptValue, setApptValue] = useState("");
 
   // Mapped Data to Render Non-Moves
   const renderNewData = showData
@@ -78,36 +74,6 @@ const CustomerMove = ({
     fetchData();
   };
 
-  // Handle Submit Form Function
-  const handleSubmitForm = async (e) => {
-    e.preventDefault(e);
-
-    // Add New Data to Supbase
-    const { data, error } = await supabase.from("dispatches").insert({
-      name: nameValue,
-      dispatch: dispatchValue,
-      customer: customerValue,
-      city: cityValue,
-      appt: apptValue,
-      move: "null",
-    });
-
-    if (error) console.log("Cannot Add to Data");
-
-    if (data) {
-      console.log("Data Added to Database");
-    }
-
-    fetchData();
-
-    // Reset Input
-    setNameValue("");
-    setDispatchValue("");
-    setCustomerValue("");
-    setCityValue("");
-    setApptValue("");
-  };
-
   // Component
   return (
     <div className="customer_container">
@@ -115,40 +81,7 @@ const CustomerMove = ({
         <h1>driver customer moves</h1>
       </div>
       {/* FORM CONTAINER BELOW */}
-      <form className="form_container" onSubmit={handleSubmitForm}>
-        <p>Enter Data</p>
-        <input
-          type="text"
-          placeholder="Enter Name"
-          value={nameValue}
-          onChange={(e) => setNameValue(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter Dispatch #"
-          value={dispatchValue}
-          onChange={(e) => setDispatchValue(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter Customer"
-          value={customerValue}
-          onChange={(e) => setCustomerValue(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter Location"
-          value={cityValue}
-          onChange={(e) => setCityValue(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter Appt"
-          value={apptValue}
-          onChange={(e) => setApptValue(e.target.value)}
-        />
-        <button>add</button>
-      </form>
+      <Form fetchData={fetchData} />
       {/* DATA CONTAINER BELOW */}
       <div className="show_data_container">
         {/* Data Header Container */}
@@ -268,12 +201,19 @@ const CustomerMove = ({
                     <option value="csxbp">csx bp</option>
                     <option value="csx59">csx 59th</option>
                     <option value="ns">ns</option>
+                    <option value="cgjol">con joliet</option>
+                    <option value="cgfv">con forest view</option>
                     <option value="cnharv">cn harv</option>
                     <option value="cnjol">cn joliet</option>
-                    <option value="lpc">lpc</option>
-                    <option value="g4">g4</option>
                     <option value="corwith">corwith</option>
-                    <option value="depot">depots</option>
+                    <option value="delong">delong</option>
+                    <option value="g4">g4</option>
+                    <option value="int35">int 35th</option>
+                    <option value="intharv">int harv</option>
+                    <option value="lpc">lpc</option>
+                    <option value="maersk">maersk</option>
+                    <option value="vaccaro">vaccaro</option>
+                    <option value="misc">misc</option>
                     <option value="null">select</option>
                   </select>
                   <button
