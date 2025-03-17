@@ -10,6 +10,7 @@
   max-width: 140rem;
   height: auto;
   margin: 0 auto;
+  padding-bottom: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

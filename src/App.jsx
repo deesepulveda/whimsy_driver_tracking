@@ -9,6 +9,7 @@ function App() {
     window.matchMedia("(min-width: 768px)").matches
   );
   const [showData, setShowData] = useState([]);
+  const [showRailData, setShowRailData] = useState([]);
   const [selectedValues, setSelectedValues] = useState(
     Array(showData.length).fill("")
   );
@@ -30,7 +31,7 @@ function App() {
     };
   }, []);
 
-  // Fetch Data from Supabase
+  // Fetch Data from Supabase / Sort by ID
   const fetchData = async () => {
     const { data, error } = await supabase
       .from("dispatches")
@@ -44,9 +45,29 @@ function App() {
     }
   };
 
-  //   Initial Data Fetch from Supabase
+  // Initial Data Fetch from Supabase
   useEffect(() => {
     fetchData();
+  }, []);
+
+  // Fetch Data from Supabase / Sort by Rail Return
+
+  const fetchRailData = async () => {
+    const { data, error } = await supabase
+      .from("dispatches")
+      .select("*")
+      .order("move", { ascending: true });
+    if (error) console.log(error);
+
+    if (data) {
+      console.log("There is Data!");
+      setShowRailData(data);
+    }
+  };
+
+  // Initial Data Fetch from Supabase
+  useEffect(() => {
+    fetchRailData();
   }, []);
 
   // Handle Selected Value Change
@@ -84,7 +105,10 @@ function App() {
         />
       )}
       {isMobile && (
-        <Rails showData={showData} fetchData={fetchData} />
+        <Rails
+          showRailData={showRailData}
+          fetchRailData={fetchRailData}
+        />
       )}
     </div>
   );

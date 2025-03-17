@@ -3,9 +3,9 @@ import "./Rails.css";
 import Form from "./Form";
 import supabase from "../config/config";
 
-const Rails = ({ showData, fetchData }) => {
+const Rails = ({ showRailData, fetchRailData }) => {
   const [editable, setEditable] = useState(
-    Array(showData.length).fill(false)
+    Array(showRailData.length).fill(false)
   );
 
   // Toggle Edit Button Function
@@ -29,7 +29,7 @@ const Rails = ({ showData, fetchData }) => {
       console.log("Value Has been Checked!");
     }
 
-    fetchData();
+    fetchRailData();
   };
 
   // Handle Updated Items
@@ -45,7 +45,7 @@ const Rails = ({ showData, fetchData }) => {
       console.log("Values Have been Updated");
     }
 
-    fetchData();
+    fetchRailData();
   };
 
   // Handle Completed Items
@@ -60,7 +60,7 @@ const Rails = ({ showData, fetchData }) => {
       console.log("Values Have been Completed");
     }
 
-    fetchData();
+    fetchRailData();
   };
 
   return (
@@ -102,7 +102,7 @@ const Rails = ({ showData, fetchData }) => {
           </div>
         </div>
         <div className="return_data_container">
-          {showData
+          {showRailData
             .map((items) => items)
             .filter((item) => item.move !== "null")
             .map((moves, index) => (

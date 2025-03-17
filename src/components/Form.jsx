@@ -11,10 +11,6 @@ const Form = ({ fetchData }) => {
   const [contValue, setContValue] = useState("");
   const [moveValue, setMoveValue] = useState("null");
 
-  // State for Form Render based on Component
-  const formRender = true;
-  const formRenderRail = true;
-
   // Handle Submit Form Function
   const handleSubmitForm = async (e) => {
     e.preventDefault(e);
@@ -93,16 +89,13 @@ const Form = ({ fetchData }) => {
         value={contValue}
         onChange={(e) => setContValue(e.target.value)}
       />
-      {formRender && formRenderRail && (
-        <input
-          type="text"
-          className="rail_form"
-          placeholder="Enter Rail"
-          value={moveValue}
-          onChange={(e) => setMoveValue(e.target.value)}
-        />
-      )}
-
+      <input
+        type="text"
+        className="rail_form"
+        placeholder="Enter Rail"
+        value={moveValue === "null" ? "" : moveValue}
+        onChange={(e) => setMoveValue(e.target.value)}
+      />
       <button>add</button>
     </form>
   );
