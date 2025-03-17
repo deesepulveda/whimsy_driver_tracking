@@ -234,12 +234,12 @@ const CustomerMove = ({
                 </div>
                 {/* Data Edit/Delete Buttons */}
                 <div className="data_row_edit">
+                  <button onClick={() => toggleEditable(index)}>
+                    {editable[index] ? "save" : "edit"}
+                  </button>
                   <button
                     onClick={() => handleDeletedItems(items.id)}>
                     delete
-                  </button>
-                  <button onClick={() => toggleEditable(index)}>
-                    {editable[index] ? "save" : "edit"}
                   </button>
                 </div>
               </div>
