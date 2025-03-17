@@ -16,7 +16,7 @@
 }
 
 .form_container > input {
-  width: calc(70% / 6);
+  width: calc(70% / 7);
   height: 3rem;
   margin: 0 0.25rem;
 }
