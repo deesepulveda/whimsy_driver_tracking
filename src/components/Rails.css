@@ -93,6 +93,14 @@
   align-items: center;
 }
 
+.container_rail
+  > .return_data_container
+  > .return_data_row:nth-of-type(odd) {
+  color: #000;
+  font-weight: 600;
+  background-color: rgb(172, 167, 167);
+}
+
 .container_rail > .return_data_container > .return_data_row > input,
 .container_rail > .return_data_container > .return_data_row > div {
   height: 100%;
@@ -125,11 +133,12 @@
   > .return_data_row
   > .return_data_row_complete
   > button {
-  width: 6rem;
+  width: 7rem;
   height: 80%;
   margin: 0 0.5rem;
   text-transform: capitalize;
   cursor: pointer;
+  box-shadow: 0.1rem 0.1rem 0.3rem #00000081;
 }
 
 /* Conditional Rendering */

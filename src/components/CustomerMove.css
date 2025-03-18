@@ -132,7 +132,7 @@
 }
 
 .data_mapping_container > .data_row > .data_row_move > button {
-  width: 6rem;
+  width: 7rem;
   height: 80%;
   margin: 0 0.5rem;
   text-transform: capitalize;
@@ -149,6 +149,7 @@
   margin: 0 0.5rem;
   text-transform: capitalize;
   cursor: pointer;
+  box-shadow: 0.1rem 0.1rem 0.3rem #00000081;
 }
 
 /* Conditional Rendering Styling */
