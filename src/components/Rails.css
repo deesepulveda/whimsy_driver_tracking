@@ -103,6 +103,7 @@
 }
 
 .container_rail > .return_data_container > .return_data_row > input {
+  color: #fff;
   background-color: transparent;
 }
 

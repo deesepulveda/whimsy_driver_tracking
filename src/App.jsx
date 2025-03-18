@@ -56,7 +56,8 @@ function App() {
     const { data, error } = await supabase
       .from("dispatches")
       .select("*")
-      .order("move", { ascending: true });
+      .order("move", { ascending: true })
+      .order("id", { ascending: true });
     if (error) console.log(error);
 
     if (data) {
@@ -89,6 +90,7 @@ function App() {
       console.log("Values Have been Updated");
     }
 
+    fetchRailData();
     fetchData();
   };
 

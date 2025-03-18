@@ -197,12 +197,11 @@ const CustomerMove = ({
                     <option value="select">
                       {items.move === "null" ? "select" : items.move}
                     </option>
-                    <option value="cp">cp bens</option>
+                    <option value="cpbens">cp bens</option>
                     <option value="csxbp">csx bp</option>
                     <option value="csx59">csx 59th</option>
-                    <option value="ns">ns</option>
-                    <option value="cgjol">con joliet</option>
-                    <option value="cgfv">con forest view</option>
+                    <option value="conjol">con joliet</option>
+                    <option value="confv">con forestview</option>
                     <option value="cnharv">cn harv</option>
                     <option value="cnjol">cn joliet</option>
                     <option value="corwith">corwith</option>
@@ -210,8 +209,11 @@ const CustomerMove = ({
                     <option value="g4">g4</option>
                     <option value="int35">int 35th</option>
                     <option value="intharv">int harv</option>
+                    <option value="itw">it wilm</option>
                     <option value="lpc">lpc</option>
                     <option value="maersk">maersk</option>
+                    <option value="nrg">nrg</option>
+                    <option value="ns">ns</option>
                     <option value="vaccaro">vaccaro</option>
                     <option value="misc">misc</option>
                     <option value="null">select</option>

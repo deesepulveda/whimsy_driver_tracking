@@ -9,7 +9,6 @@ const Form = ({ fetchData }) => {
   const [cityValue, setCityValue] = useState("");
   const [apptValue, setApptValue] = useState("");
   const [contValue, setContValue] = useState("");
-  const [moveValue, setMoveValue] = useState("null");
 
   // Handle Submit Form Function
   const handleSubmitForm = async (e) => {
@@ -23,7 +22,7 @@ const Form = ({ fetchData }) => {
       city: cityValue,
       appt: apptValue,
       container: contValue,
-      move: moveValue,
+      move: "null",
       chas: null,
     });
 
@@ -89,13 +88,7 @@ const Form = ({ fetchData }) => {
         value={contValue}
         onChange={(e) => setContValue(e.target.value)}
       />
-      <input
-        type="text"
-        className="rail_form"
-        placeholder="Enter Rail"
-        value={moveValue === "null" ? "" : moveValue}
-        onChange={(e) => setMoveValue(e.target.value)}
-      />
+
       <button>add</button>
     </form>
   );
