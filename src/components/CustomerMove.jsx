@@ -107,9 +107,13 @@ const CustomerMove = ({
             {renderNewData.map((items, index) => (
               <div
                 key={items.id}
-                className={
-                  items.checked ? "data_row checkedBG" : "data_row"
-                }>
+                className="data_row"
+                style={{
+                  background: items.checked
+                    ? "rgb(142, 10, 105)"
+                    : "",
+                  color: items.checked ? "#fff" : "",
+                }}>
                 {/* Data Name */}
                 {editable[index] ? (
                   <input
@@ -229,6 +233,7 @@ const CustomerMove = ({
                 <div className="data_row_det">
                   <input
                     type="checkbox"
+                    checked={items.checked}
                     onChange={(e) =>
                       handleCheckedToggle(e, items.id, "checked")
                     }

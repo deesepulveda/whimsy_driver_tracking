@@ -99,6 +99,12 @@
   align-items: center;
 }
 
+.data_mapping_container > .data_row:nth-of-type(odd) {
+  color: #000;
+  font-weight: 600;
+  background-color: rgb(172, 167, 167);
+}
+
 .data_mapping_container > .data_row > div {
   height: 100%;
   display: flex;
@@ -112,9 +118,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  text-align: center;
   background-color: transparent;
   border: 1px solid #fff;
+}
+
+.data_mapping_container > .data_row > input::placeholder {
+  color: rgb(102, 105, 105);
+  font-style: italic;
+  font-weight: 600;
 }
 
 .data_mapping_container > .data_row > .data_row_move {
@@ -153,7 +165,3 @@
 }
 
 /* Conditional Rendering Styling */
-
-.checkedBG {
-  background-color: rgb(179, 10, 131);
-}

@@ -69,9 +69,7 @@ const Rails = ({ showRailData, fetchRailData }) => {
         <h1>driver rail returns</h1>
       </div>
       <div className="container_rail">
-        <div>
-          <Form />
-        </div>
+        <div></div>
         <div className="container_rail_header">
           <div className="rail_return_cols return_cols_rail">
             ret rail
@@ -108,11 +106,11 @@ const Rails = ({ showRailData, fetchRailData }) => {
             .map((moves, index) => (
               <div
                 key={moves.id}
-                className={
-                  moves.arrived
-                    ? "return_data_row arrived"
-                    : "return_data_row"
-                }>
+                className="return_data_row"
+                style={{
+                  background: moves.arrived ? "red" : "",
+                  color: moves.arrived ? "#fff" : "",
+                }}>
                 {editable[index] ? (
                   <input
                     type="text"
@@ -186,6 +184,7 @@ const Rails = ({ showRailData, fetchRailData }) => {
                 <div className="return_data_row_upload">
                   <input
                     type="checkbox"
+                    checked={moves.uploaded}
                     onChange={(e) =>
                       handleCheckedToggle(e, moves.id, "uploaded")
                     }
@@ -194,6 +193,7 @@ const Rails = ({ showRailData, fetchRailData }) => {
                 <div className="return_data_row_arrived">
                   <input
                     type="checkbox"
+                    checked={moves.arrived}
                     onChange={(e) =>
                       handleCheckedToggle(e, moves.id, "arrived")
                     }
@@ -202,7 +202,7 @@ const Rails = ({ showRailData, fetchRailData }) => {
                 {editable[index] ? (
                   <input
                     type="text"
-                    placeholder="Enter Chas Move"
+                    placeholder={moves.chas || "Edit Chas Move"}
                     className="return_data_row_chas"
                     onChange={(e) =>
                       handleUpdateItems(e, moves.id, "chas")

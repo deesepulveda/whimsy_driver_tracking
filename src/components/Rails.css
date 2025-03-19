@@ -7,10 +7,10 @@
 
 .container_rail {
   width: 100%;
-  max-width: 140rem;
   height: auto;
   margin: 0 auto;
-  padding-bottom: 6rem;
+  padding-top: 5rem;
+  padding-bottom: 15rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,7 +19,8 @@
 }
 
 .container_rail > .container_rail_header {
-  width: 100%;
+  width: 95%;
+  max-width: 140rem;
   height: 4rem;
   display: flex;
   justify-content: flex-start;
@@ -28,7 +29,8 @@
 }
 
 .container_rail > .return_data_container {
-  width: 100%;
+  width: 95%;
+  max-width: 140rem;
   height: auto;
 }
 
@@ -78,11 +80,11 @@
 
 .container_rail > .container_rail_header > .return_cols_chas,
 .return_data_row_chas {
-  width: 20%;
+  width: 15%;
 }
 .container_rail > .container_rail_header > .return_cols_complete,
 .return_data_row_complete {
-  width: 15%;
+  width: 20%;
 }
 
 .container_rail > .return_data_container > .return_data_row {
@@ -111,7 +113,9 @@
 }
 
 .container_rail > .return_data_container > .return_data_row > input {
-  color: #fff;
+  color: #ffffff;
+  font-size: 1.4rem;
+  text-align: center;
   background-color: transparent;
 }
 
@@ -142,14 +146,3 @@
 }
 
 /* Conditional Rendering */
-
-.strike {
-  text-decoration: line-through;
-  color: red;
-}
-
-.arrived {
-  color: #fff;
-  font-weight: 600;
-  background-color: rgb(158, 9, 24);
-}
